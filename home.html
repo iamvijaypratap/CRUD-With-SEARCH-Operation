@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Electricity Bill DataBase</title>
+    <style>
+       .bd{
+         background-color:#212529;
+       }
+       .d{
+         font-family: cursive;
+         font-weight: bolder;
+         color: white;
+       }
+       .display-3{
+         color: white;
+       }
+    </style>
+  </head>
+  <body class="bd">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">DataBase Management System</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Data
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/show">DataBase</a></li>
+                 
+                </ul>
+              </li>
+              
+            </ul>
+              
+              <a class="btn btn-primary btn-success" href="/result" role="button">Search in DataBase</a>
+           
+          </div>
+        </div>
+      </nav>
+
+     <div class="container-fluid">
+        <form action="/" method="POST">
+            <div class="container form-group ">
+            <div class="container">
+              <h1 class="display-3 ">Add Electricity Bill DATA </h1>
+            </div>
+              <label class="my-2  "for="formGroupExampleInput"><p class="d">Month</p></label>
+              <input type="text" class="form-control" name="mont" id="formGroupExampleInput" placeholder=>
+
+              <label class="my-2" for="formGroupExampleInput"><p class="d">Total Unit</p></label>
+              <input type="text" class="form-control" name="totalunit" id="formGroupExampleInput" placeholder=>
+
+              <label class="my-2" for="formGroupExampleInput"><p class="d">Our Unit</p></label>
+              <input type="text" class="form-control" name="ourunit" id="formGroupExampleInput" placeholder=>
+
+              <label class="my-2" for="formGroupExampleInput"><p class="d">Owner Unit</p></label>
+              <input type="text" class="form-control" name="ownerunit" id="formGroupExampleInput" placeholder=>
+
+              <label class="my-2" class="my-2" for="formGroupExampleInput"><p class="d">Total Electricity Bill</p></label>
+              <input type="text" class="form-control" name="totalbill" id="formGroupExampleInput" placeholder=>
+
+              <label class="my-2" for="formGroupExampleInput"><p class="d">Owner Electricity Bill</p></label>
+              <input type="text" class="form-control" name="owneramount" id="formGroupExampleInput" placeholder=>
+
+              <label class="my-2" for="formGroupExampleInput"><p class="d">Branch Electricity Bill</p></label>
+              <input type="text" class="form-control" name="branchamount" id="formGroupExampleInput" placeholder=>
+             
+              <button type="submit" onclick="clicked()" class="btn btn-success my-3 ">Submit</button>
+            </div>
+          
+            </form>
+     
+
+     </div>
+
+
+            
+           
+           
+
+
+
+
+
+
+           <div class="container my-5 card">
+            <table class="table">
+            
+                <thead class="table-primary">
+                
+                
+                  <tr>
+                    <th scope="col">Sno</th>
+                    <th scope="col">Month</th>
+                    <th scope="col">Total Electricity Bill</th>
+                    <th scope="col">Total UNIT</th>
+                    <th scope="col">Owner UNIT</th>
+                    <th scope="col">Branch UNIT</th>
+                    <th scope="col">Owner Electricity Bill</th>
+                    <th scope="col">Branch Electricity Bill</th>
+                    <th>Actions[Update:Delete]</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 
+                  {% for data in alldata %}
+                    
+                
+                    <tr>
+                        <th scope="row">{{loop.index}}</th>
+                        <td>{{data.month}}</td>
+                        <td>{{data.totalamount}} Rupees</td>
+                        <td> {{data.totalunit}} Units</td>
+                        <td> {{data.ownerunit}} Units</td>
+                        <td> {{data.ourunit}} Units</td>
+                        <td>{{data.owneramount}} Rupees</td>
+                        <td> {{data.ouramount}} Rupees</td>
+                        <td>
+                          <a href="/update/{{data.sno}}" type="button" class="btn btn-success btn-sm mx-3">Update</button> 
+                          <a href="/delete/{{data.sno}}" type="button" class="btn btn-danger btn-sm">Delete</button>
+                      </td>
+                      </tr>   
+                    
+                      {% endfor %}
+                </tbody>
+              </table>
+    
+         </div>
+                    
+     
+
+     
+
+
+
+
+
+
+       
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+    <footer class="d">Developed By Vijay Pratap</footer>
+  </body>
+</html>
